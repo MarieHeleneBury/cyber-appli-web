@@ -23,6 +23,5 @@ export class PokemonsApiService {
             return throwError(err);
           })
       )
-    //   .catch(PokemonsApiService._handleError);
   }
 }

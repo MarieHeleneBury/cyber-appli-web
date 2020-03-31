@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import {PokemonsApiService} from './pokemons/pokemons-api.service';
+import { PokemonsApiService } from './pokemons/pokemons-api.service';
 
 @NgModule({
   declarations: [
