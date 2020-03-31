@@ -1,12 +1,14 @@
 # coding=utf-8
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 from .entities.entity import Session, engine, Base
 from .entities.pokemon import Pokemon, PokemonSchema
 
 # creating the Flask application
 app = Flask(__name__)
+CORS(app)
 
 # generate database schema
 Base.metadata.create_all(engine)
