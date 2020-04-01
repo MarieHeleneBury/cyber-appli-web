@@ -15,7 +15,7 @@ export class PokemonsApiService {
     return Observable.throw(err.message || 'Error: Unable to complete request.');
   }
 
-  // GET list of public, future events
+  
   getPokemons(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(`${API_URL}/pokemons`)
     // .pipe(

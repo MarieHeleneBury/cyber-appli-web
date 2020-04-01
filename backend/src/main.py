@@ -60,16 +60,17 @@ def add_pokemon():
     # session.close()
     # return jsonify(new_pokemon), 201
 
-@app.route('/pokemon/{pokemon_name}')
-def get_type():
+
+@app.route('/pokemon/<pokemon_name>')
+def get_type(pokemon_name):
     # pokemon_name = request.get_json()
     print(pokemon_name)
     # posted_pokemon = PokemonSchema(only=('name', 'elem_type'))\
     #     .load(request.get_json())
-    return 'Normal'
+    # return 'Normal'
 
     conn = engine.connect() # connect to database
-    query_get_string = "SELECT elem_type FROM pokemons WHERE name = '" + pokemon_name + "'"
-    query_get = conn.execute(query_post_string) # This line performs query and returns json result
-    return {[i for i in query_get.cursor.fetchall()]}
+    query_get = conn.execute("SELECT name, elem_type FROM pokemons WHERE name = '" + pokemon_name + "'")
+    answer = query_get.cursor.fetchall()
+    return {'pokemon' : answer}
     

@@ -44,7 +44,9 @@ export class PokemonsComponent implements OnInit, OnDestroy {
     this.pokemonsApi
       .getPokemonType(this.pokemon.name)
       .subscribe(
-        () => this.router.navigate(['/']),
+        res => {
+          this.pokemon.elem_type = res;
+        },
         error => alert(error.message)
       );
   }
