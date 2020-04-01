@@ -30,8 +30,8 @@ export class PokemonsApiService {
       .post(`${API_URL}/pokemons`, pokemon);
   }
 
-  getPokemonType(pokemon: Pokemon) :Observable<any> {
+  getPokemonType(pokemon_name: string) :Observable<any> {
     return this.http
-      .get(`${API_URL}/pokemon`, pokemon);
+      .get<any>(`${API_URL}/pokemon/`+ pokemon_name);
   }
 }

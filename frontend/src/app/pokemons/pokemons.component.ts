@@ -2,28 +2,22 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Pokemon} from './pokemon.model';
 import {PokemonsApiService} from './pokemons-api.service';
+import {PokemonTypeFormComponent} from '../pokemon-type-form/pokemon-type-form.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'pokemons',
-  template: `
-    <div>
-        <h2>Here are the pokemons created so far: </h2>
-        <button routerLink="/new-pokemon">New pokemon</button>
-        <ul>
-            <li *ngFor="let pokemon of pokemonsList">
-                {{pokemon.name}}
-            </li>
-        </ul>
-        <h2>Discover a pokemon's type !</h2>
-        <app-pokemon-type></app-pokemon-type>
-    </div>
-  `
+  templateUrl: './pokemons.component.html'
 })
 export class PokemonsComponent implements OnInit, OnDestroy {
   pokemonsListSubs: Subscription;
   pokemonsList: Pokemon[];
+  pokemon = {
+    name: '',
+    elem_type: '',
+  };
 
-  constructor(private pokemonsApi: PokemonsApiService) {
+  constructor(private pokemonsApi: PokemonsApiService, private router: Router) {
   }
 
   ngOnInit() {
@@ -39,4 +33,24 @@ export class PokemonsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.pokemonsListSubs.unsubscribe();
   }
+
+  
+
+  updateName(event: any) {
+    this.pokemon.name = event.target.value;
+  }
+
+  getPokemonType() {
+    this.pokemonsApi
+      .getPokemonType(this.pokemon.name)
+      .subscribe(
+        () => this.router.navigate(['/']),
+        error => alert(error.message)
+      );
+  }
+
+  getType() {
+      return this.pokemon.elem_type;
+  }
+
 }

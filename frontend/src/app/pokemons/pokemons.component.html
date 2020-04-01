@@ -1,0 +1,18 @@
+<div>
+    <h2>Here are the pokemons created so far: </h2>
+    <button routerLink="/new-pokemon">New pokemon</button>
+    <p>List : {{pokemonsList}}</p>
+    <ul>
+        <li *ngFor="let pokemon of pokemonsList">
+            {{pokemon.name}}
+        </li>
+    </ul>
+
+    <h2>Discover a pokemon's type !</h2>
+    <div>
+        <label for="pokemon-name">Name</label>
+        <input id="pokemon-name" (keyup)="updateName($event)">
+        <button (click)="getPokemonType()">Get its type</button>
+        <p>{{getType()}}</p>
+    </div>
+</div>

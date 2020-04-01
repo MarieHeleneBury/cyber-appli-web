@@ -1,20 +1,16 @@
 import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {PokemonsApiService} from "./pokemons-api.service";
+import {PokemonsApiService} from "../pokemons/pokemons-api.service";
+import {PokemonsComponent} from "../pokemons/pokemons.component";
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'pokemon-type',
-    template: `
-      <div>
-        <label for="pokemon-name">Name</label>
-        <input id="pokemon-name" (keyup)="updateName($event)">
-        <button (click)="getPokemonType()">Get its type</button>
-        <p>{{getType()}}</p>
-      </div>
-    `
+    selector: 'pokemon-type-form',
+    templateUrl: './pokemon-type-form.component.html',
+    styleUrls: ['./pokemon-type-form.component.css']
   })
-  export class PokemonTypeComponent {
+
+  export class PokemonTypeFormComponent {
     pokemon = {
       name: '',
       elem_type: '',

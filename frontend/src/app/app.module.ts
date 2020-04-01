@@ -8,6 +8,7 @@ import { PokemonsApiService } from './pokemons/pokemons-api.service';
 import {PokemonFormComponent} from './pokemons/pokemon-form.component';
 import {RouterModule, Routes} from '@angular/router';
 import {PokemonsComponent} from './pokemons/pokemons.component';
+import { PokemonTypeFormComponent } from './pokemon-type-form/pokemon-type-form.component';
 
 const appRoutes: Routes = [
   { path: 'new-pokemon', component: PokemonFormComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     AppComponent,
     PokemonFormComponent,
     PokemonsComponent,
+    PokemonTypeFormComponent,
   ],
   imports: [
     BrowserModule,
