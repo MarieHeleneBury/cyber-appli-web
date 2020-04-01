@@ -18,10 +18,20 @@ export class PokemonsApiService {
   // GET list of public, future events
   getPokemons(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(`${API_URL}/pokemons`)
-    .pipe(
-          catchError((err : HttpErrorResponse) => {
-            return throwError(err);
-          })
-      )
+    // .pipe(
+    //       catchError((err : HttpErrorResponse) => {
+    //         return throwError(err);
+    //       })
+    //   )
+  }
+
+  savePokemon(pokemon: Pokemon): Observable<any> {
+    return this.http
+      .post(`${API_URL}/pokemons`, pokemon);
+  }
+
+  getPokemonType(pokemon: Pokemon) :Observable<any> {
+    return this.http
+      .get(`${API_URL}/pokemon`, pokemon);
   }
 }

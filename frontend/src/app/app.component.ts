@@ -1,33 +1,14 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {PokemonsApiService} from './pokemons/pokemons-api.service';
-import {Pokemon} from './pokemons/pokemon.model';
-
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <div style="text-align:center">
+      <h1>Pokemons</h1>
+    </div>
+    
+    <router-outlet></router-outlet>
+  `,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'app';
-  pokemonsListSubs: Subscription;
-  pokemonsList: Pokemon[];
-
-  constructor(private pokemonsApi: PokemonsApiService) {
-  }
-
-  ngOnInit() {
-    this.pokemonsListSubs = this.pokemonsApi
-      .getPokemons()
-      .subscribe(res => {
-          this.pokemonsList = res;
-        },
-        console.error
-      );
-  }
-
-  ngOnDestroy() {
-    this.pokemonsListSubs.unsubscribe();
-  }
-}
+export class AppComponent { }
