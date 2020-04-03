@@ -61,9 +61,10 @@ def add_pokemon():
     # return jsonify(new_pokemon), 201
 
 
-@app.route('/pokemon/<pokemon_name>')
-def get_type(pokemon_name):
+@app.route('/pokemon')
+def get_type():
     # pokemon_name = request.get_json()
+    pokemon_name = request.args.get('pokemon_name')
     print(pokemon_name)
     # posted_pokemon = PokemonSchema(only=('name', 'elem_type'))\
     #     .load(request.get_json())
