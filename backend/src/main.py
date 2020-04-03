@@ -6,6 +6,8 @@ from flask_cors import CORS
 from .entities.entity import Session, engine, Base
 from .entities.pokemon import Pokemon, PokemonSchema
 
+import re
+
 # creating the Flask application
 app = Flask(__name__)
 CORS(app)
@@ -69,9 +71,13 @@ def get_type():
     # posted_pokemon = PokemonSchema(only=('name', 'elem_type'))\
     #     .load(request.get_json())
     # return 'Normal'
+    regex_test = re.search("^[a-zA-Z]+$", pokemon_name)
+    if regex_test :
 
-    conn = engine.connect() # connect to database
-    query_get = conn.execute("SELECT name, elem_type FROM pokemons WHERE name = '" + pokemon_name + "'")
-    answer = query_get.cursor.fetchall()
-    return {'pokemon' : answer}
+        conn = engine.connect() # connect to database
+        query_get = conn.execute("SELECT name, elem_type FROM pokemons WHERE name = '" + pokemon_name + "'")
+        answer = query_get.cursor.fetchall()
+        return {'pokemon' : answer}
+    else :
+        return jsonify("Bad request"), 400
     
